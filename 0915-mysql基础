@@ -201,7 +201,90 @@
 			语法:truncate table 表;
 			需求:删除韩国表中所有数据
 				truncate table 韩国;
-				
+12.数据的查询
+	a.导入sakila数据库
+		1>下载sakila数据库
+			https://dev.mysql.com/doc/index-other.html
+		2>解压压缩包文件
+		3>命令提示符中进入到解压后的文件夹中
+		4>登录mysql
+			mysql -u root -p
+		5>导入sakila-schema.sql
+			source sakila-schema.sql;
+		6>导入sakila-data.sql
+			source sakila-data.sql;
+		7>退出
+			exit
+	b.查询的分类
+		简单查询
+		多表查询
+		子查询
+		分组查询
+	c.简单查询
+		语法:select 列 from 表 where 条件;
+		select后面from前面是和列相关
+		where条件是和行相关
+		*代表所有列
+		查询指定行
+			查询城市表中城市名称是Faaa的所有数据
+			select * from city where city='Faaa';
+		查询指定列
+			查询城市表中所有城市的名称
+			select city from city ;	
+		查询指定行的列
+			城市名称叫做Binzhou的最后修改时间
+			select last_update from city where city='Binzhou';
+		查询所有数据
+			查询城市表中所有数据
+			select * from city;
+	d.where条件(子句)
+		1>比较
+			>
+			<
+			=
+			>=
+			<=
+			!=
+			<>
+			查询城市表中city_id小于100的城市名称
+			select city from city where city_id<100;
+			查询城市名字不是Binzhou的所有信息
+			select * from city where city<>'Binzhou';
+		2>关系
+			and  同时满足
+			or   满足一个条件即可
+			not  不满足条件
+			查询城市表中city_id范围100和200之间的所有信息
+			select * from city where city_id>=100 and city_id<=200;
+			查询城市表中城市名称是Binzhou的或者Dongying的所有信息
+			select * from city where city='Binzhou' or city='Dongying';
+		3>区间
+			between...and...
+			小在前，大在后，包含两个端点
+			查询城市表中city_id范围100和200之间的所有信息
+			select * from city where city_id between 100 and 200;
+		4>空值
+			没有任何数据类型，没有任何值
+			无法用于比较和运算，查询使用is null或者is not null
+			查询地址表中address2为空的所有信息
+			select * from address where address2 is null;
+		5>模糊查询
+			通常和字符类型一起使用
+			当信息不完整时候使用
+			like 关键字
+			_    一个字符
+			%    任意个字符
+			城市表中搜索城市名称以C开头的城市名称
+			select city from city where city like 'C%';
+			城市表中搜索城市名称是u结尾的所有数据
+			select * from city where city like '%u';
+			城市表中城市名称是6个字符的所有信息
+			select * from city where city like '______';
+			
+
+
+
+
 
 
 
