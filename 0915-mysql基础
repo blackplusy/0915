@@ -54,4 +54,72 @@
 	数据库分为数据库软件和数据库数据
 	数据库是由表组成
 	表是由数据组成
+5.mysql的登录
+	a.登录命令(命令提示符[win+r--cmd])
+		mysql
+			登录本地数据库
+		mysql -u root -p
+			管理员登录当前数据库(root管理员 -u 用户 -p 密码)
+		mysql -u root -h 127.0.0.1 -p
+			管理员登录IP地址为127.0.0.1的数据库(-h 登录IP)
+
+	b.登录方式
+		1>进入到命令所在文件夹
+			图形化进入文件夹，地址栏中输入cmd
+			win+r--cmd--d:--cd phpStudy\MySQL\bin
+		2>设置环境变量(推荐)
+			计算机--属性--高级--系统变量--Path中添加mysql的bin文件夹路径
+			;D:\phpStudy\MySQL\bin
+			确定X3
+			设置完环境变量以后要重开命令提示符
+6.基础命令
+	show databases;
+		查看当前有哪些数据库
+	select database();
+		查看当前数据库的名字
+		null代表没有选择任何数据库
+	use mysql
+		当前数据库切换为mysql
+	show tables
+		查看当前数据库有哪些表
+	select * from user;
+	select * from user\G
+		查看user表中所有数据
+7.表结构
+	a.数据类型
+		数值   123 1.23  	int 
+		字符   '*#06#'   	char  varchar
+		日期   '2000-01-01' date
+		char()          定长   char(10)-->6--10    速度快，占空间
+		varchar()       变长   varchar(10)--6--6   速度慢，节省空间
+	b.创建表结构
+		语法:
+		create table 表(
+			表头、列名、字段   数据类型,
+			表头、列名、字段   数据类型,
+			...
+		);
+		最后一个列是没有逗号
+		需求:创建表商品(goods),商品名称(gname)字符类型，最多20个字符，商品编号(id) 数值类型,商品售价(price) 数值类型
+		create table goods(
+			gname char(20),
+			id    int,
+			price int
+		);
+		查看表结构
+		语法:
+			desc 表名;
+		需求:查看goods表表结构
+			desc goods;
+			
+
+8.管理mysql使用的工具
+	mysql workbench  
+	sql yog     (小海豚)
+	phpmyadmin
+	navicat 
+	toad
+	mysql-front
+
+
 
