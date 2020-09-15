@@ -111,7 +111,21 @@
 			desc 表名;
 		需求:查看goods表表结构
 			desc goods;
-			
+	c.修改表结构
+		增加列
+			需求:goods表中增加id1列,数值类型
+			alter table goods add id1 int;
+		修改列
+			需求:goods表中id1修改为字符类型,最多10个字符
+			alter table goods modify id1 char(10);
+		删除列
+			需求:goods表中删除id1列
+			alter table goods drop column id1;
+	d.表结构的删除
+		表结构一旦删除，表中的数据也一并删除
+		语法:drop table 表;
+			需求:删除goods表
+				drop table goods;
 
 8.管理mysql使用的工具
 	mysql workbench  
