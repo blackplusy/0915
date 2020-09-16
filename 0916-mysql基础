@@ -1,0 +1,50 @@
+1.多表查询
+	当一张表中数据无法满足条件的时候使用多表查询
+	a.笛卡尔积(集)
+		两张表不做任何关联产生的数据,产生大量无效数据，数据量成倍增加，为了避免产生此类情况，使用内联查询，左联查询，右联查询
+		select * from country;
+		select * from city;
+		select * from city ,country;
+	b.内联查询
+		语法:
+		select 列 from 表1 ,表2 where 表1.列=表2.列;
+		select 列 from 表1 inner join 表2 on  表1.列=表2.列;
+		关联列判断
+			1>名字一样
+			2>作用一致
+			3>主外键关系
+		需求:查询国家名称以C开头的城市名称
+			1>分析列
+				国家名称
+				城市名称
+			2>分析表
+				country
+				city
+			3>关联
+				select * from country,city
+				where country.country_id=city.country_id;
+			4>过滤
+				select city from country,city
+				where country.country_id=city.country_id
+				and country like 'C%';
+		需求:查询城市名称是Shenzhen的国家名称,国家id
+			1>分析列
+				城市名称
+				国家名称
+			2>分析表
+				country
+				city
+			3>关联
+				select * from country co,city c
+				where co.country_id=c.country_id;
+			4>过滤
+				select co.country from country co,city c
+				where co.country_id=c.country_id
+				and c.city='Shenzhen';
+		需求:查询城市名称是Shenzhen的国家名称,国家id(错误的示范)
+			select country,country_id  from country ,city 
+			where country.country_id=city.country_id
+			and city.city='Shenzhen';
+
+
+
