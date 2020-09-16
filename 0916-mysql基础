@@ -167,6 +167,47 @@
 		select co.country,count(c.city) from city c,country co
 		where c.country_id=co.country_id
 		group by co.country
-		having count(c.city)>30;	
+		having count(c.city)>30;	t
 
+
+
+
+
+
+
+	查询每个国家有多少个地区,要求显示国家名称,地区数量?
+
+	select co.country,count(a.district)   from country co,city c,address a
+	where co.country_id=c.country_id
+	and c.city_id=a.city_id
+	group by co.country;
+
+
+
+	查询每个城市有多少个客户,要求显示城市名称,客户数量(计算客户id)
+
+	select c.city,count(cu.customer_id)  from city c,address a,customer cu
+	where c.city_id=a.city_id
+	and a.address_id=cu.address_id
+	group by c.city;
+
+
+	查询每个国家有多少名字以M开头的客户名字？要求显示国家名称，客户数量(计算客户id)
+	select  co.country,count(cu.customer_id)  from country co,city c,address a,customer cu
+	where co.country_id=c.country_id
+	and c.city_id=a.city_id
+	and a.address_id=cu.address_id
+	and cu.first_name like 'M%'
+	group by co.country;
+
+
+
+	查询以C开头的国家，S开头的城市中每个城市中有多少客户？要求显示城市名称,客户数量(计算客户id)
+	select  c.city,count(cu.customer_id) from country co,city c,address a,customer cu
+	where co.country_id=c.country_id
+	and c.city_id=a.city_id
+	and a.address_id=cu.address_id
+	and co.country like 'C%'
+	and c.city like 'S%'
+	group by c.city;
 
