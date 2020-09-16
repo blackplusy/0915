@@ -80,6 +80,93 @@
 		select t1.no,t1.name,t2.grade,t2.cources  from test1 t1,test2 t2
 		where t1.no=t2.no
 		and t2.grade>=75;
+	查询address表中地区是邮政编码是10开头并且以7结尾的城市名称
+		1>分析列
+			邮政编码
+			城市名称
+		2>分析表
+			address
+			city
+		3>关联
+			select * from address a,city c
+			where a.city_id=c.city_id;
+		4>过滤
+			select c.city from address a,city c
+			where a.city_id=c.city_id
+			and a.postal_code like '10%7';		
 
+	查询address表中地址信息不是23开头的并且最后更新日期晚于2014-09-25 22：30：00的国家名称
+		1>分析列
+			地址信息
+			国家名称
+		2>分析表
+			address
+			country
+		3>关联
+			select  * from address a,city c,country co
+			where a.city_id=c.city_id
+			and co.country_id=c.country_id;
+		4>过滤
+			select  co.country from address a,city c,country co
+			where a.city_id=c.city_id
+			and co.country_id=c.country_id
+			and a.address not like '23%'
+			and a.last_update>'2014-09-25 22：30：00';		
+	c.左联和右联查询
+		1>左联
+			语法:select 列 from 左表 left join 右表 on 左表.列=右表.列;
+			create table a(
+				a int
+			);
+			insert into a values(1),(2),(3);
+			create table b(
+				a  int,
+				b  char(10)
+			);
+			insert into b values(1,'a'),(2,'b'),(4,'d');
+			左联查询，左表中所有数据都有
+			结果是内联查询结果+左表中有，右表中没有的，右表显示为空
+			select * from a,b where a.a=b.a;
+			select * from a left join b on a.a=b.a;
+
+		2>右联
+			语法:select 列 from 左表 right join 右表 on 左表.列=右表.列;
+			右联查询，右表中所有数据都有
+			结果是内联查询结果+右表中有，左表中没有的，左表显示为空
+			select * from a right join b on a.a=b.a;
+2.分组查询
+	按照某种条件进行归类
+	a.分组函数(聚合函数)
+		max() 	最大
+		min()	最小
+		avg() 	平均
+		sum() 	求和
+		count() 计数
+		一般来说是和分组一起使用，但是也可以单独使用
+		查询city表中最大country_id是多少
+		select max(country_id) from city;
+	b.分组查询
+		语法:select 列 from 表
+				where 条件
+					group by 分组条件
+						having 分组后过滤条件
+		判断分组条件
+			每后面跟的都是分组条件
+		需求:查询地址表中每个地区有多少城市id
+			select  district,count(city_id) from address 
+				group by district;
+		需求:查询每个国家有多少个城市
+			select co.country,count(c.city) from city c,country co
+			where c.country_id=co.country_id
+			group by co.country;
+	c.分组后过滤
+		where    分组前过滤，不能直接跟分组函数
+		having   分组后过滤，后面可以直接跟分组函数
+		有group by 才有having，没有group by 就没有having
+		需求:查询城市数量超过30的国家名称
+		select co.country,count(c.city) from city c,country co
+		where c.country_id=co.country_id
+		group by co.country
+		having count(c.city)>30;	
 
 
