@@ -169,19 +169,12 @@
 		group by co.country
 		having count(c.city)>30;	t
 
-
-
-
-
-
-
 	查询每个国家有多少个地区,要求显示国家名称,地区数量?
 
 	select co.country,count(a.district)   from country co,city c,address a
 	where co.country_id=c.country_id
 	and c.city_id=a.city_id
 	group by co.country;
-
 
 
 	查询每个城市有多少个客户,要求显示城市名称,客户数量(计算客户id)
@@ -201,7 +194,6 @@
 	group by co.country;
 
 
-
 	查询以C开头的国家，S开头的城市中每个城市中有多少客户？要求显示城市名称,客户数量(计算客户id)
 	select  c.city,count(cu.customer_id) from country co,city c,address a,customer cu
 	where co.country_id=c.country_id
@@ -210,4 +202,46 @@
 	and co.country like 'C%'
 	and c.city like 'S%'
 	group by c.city;
+
+	create table order1 (
+		name char(10),
+		order_num int,
+		ddate date
+	);
+	insert into order1 values('北京',100,'2020-09-16'),('北京',100,'2020-09-17'),('北京',100,'2020-09-18'),('上海',200,'2020-09-16'),('广州',300,'2020-09-18'),('深圳',100,'2020-09-18'),('广州',300,'2020-09-17'),('深圳',100,'2020-09-17');
+	--查询平均订单量超过200的门店名称
+	--name  门店
+	--order_num 订单数量
+	--ddate     日期
+	select avg(order_num) from order1;
+	select name,avg(order_num) from order1 group by name;
+	select name,avg(order_num) from order1 group by name having avg(order_num)>200;
+3.排序和分页
+	排序:按照条件进行从大到小或者从小到大进行排列
+		语法:
+		select 列 from 表
+			where 条件
+				group by 分组条件
+					having 分组后过滤条件
+						order by 排序条件;
+		顺序(从小到大)
+			order by 列;
+			order by 列 asc;
+			查询city表中所有数据，按照country_id从小到大进行排序
+			select * from city order by country_id;
+
+		逆序(从大到小)
+			查询city表中所有数据，按照city_id从大到小进行排序
+			select * from city order by city_id desc;
+	分页：类似于邮箱
+		select 列 from 表
+			where 条件
+				group by 分组条件
+					having 分组后过滤条件
+						order by 排序条件
+							limit 分页条件;
+		查询city表中前10行数据
+		select * from city limit 10;
+		查询city表中11-20行数据
+		select * from city limit 10,10;
 
