@@ -1,0 +1,66 @@
+--5.bmp
+	1>select avg(english) from mark;
+	2>
+		select m.math,c.address,c.telno,c.name  from cust c,mark m
+		where c.studentno=m.studentno
+		and studentno in (11,22,33,44,55);
+
+		select m.math,c.address,c.telno,c.name  from cust c,mark m
+		where c.studentno=m.studentno	
+		and studentno=11
+		or studentno=22
+		or studentno=33
+		or studentno=44
+		or studentno=55;
+--4.png
+	1>select  xm,zkzh from tb_student where score>0 and score<5;
+	2>
+	select * from tb_student where xm='张三' and score=5;
+	3>
+	select s.name,m.成绩 from 学生 s,成绩 c
+	where s.准考证号=c.准考证号
+	and s.年龄 between 20 and 35
+	order by s.准考证号 desc;
+--2.png
+	select  count(*) from table1 t1,table2 t2
+	where t1.学生id=t2.学生id;
+
+	select t1.姓名 ,t2.家庭住址 from table1 t1,table2 t2
+	where t1.学生id=t2.学生id
+	and t1.姓名 like '张%'
+	and t1.性别='女'
+	order by t1.姓名;
+
+==================================================================
+1.子查询(嵌套)
+	一条SQL语句的执行依赖于另外一条SQL语句的执行结果
+	需求:查询国家名称是China的城市名称
+		1>查询国家表中满足条件的country_id
+			select country_id from country where country='China';
+
+		2>查询城市表中country_id为上面查询出来结果的城市名称
+			select city from city where country_id=(select country_id from country where country='China');
+	子查询可以用于数据的新增、修改和删除、查询
+	--2.jpg
+		3>
+		insert into achievement values((select id from student where name='Robert'),80);
+		4>
+		update achievement set mark=87 where id=(select id from student where name='Rose');
+		5>
+		delete from achievement where id=(select id from student where name='Betty');
+		delete from student where name='Betty';
+	子查询分为单行子查询和多行子查询
+		单行子查询:查询子句查询出来的结果是1行，可以用in，=
+		多行子查询:查询子句查询出来结果是多行，用in
+		查询以C开头的国家有哪些城市
+		1>查询国家表中满足条件的country_id
+			select country_id from country where country like 'C%';
+		2>查询城市表中country_id为上面查询出来结果的城市名称
+			select city from city where country_id in (select country_id from country where country like 'C%');
+	子查询的结果可以作为表来使用
+		查询city表中city_id最大的城市名称
+		select max(city_id) from city;
+		select city from city where city_id=(select max(city_id) from city);
+		select c.city from city c,(select max(city_id) id  from city) t
+		where c.city_id=t.id;
+
