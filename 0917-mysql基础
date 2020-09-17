@@ -87,3 +87,86 @@
 				select s# from sc group by s# having count(*)>5;
 			b.查询s表中s#为上面查询出来结果的xxx
 				select s#，sd from s where s# in (select s# from sc group by s# having count(*)>5)
+
+
+
+查询以C开头的国家有哪些城市?
+
+国家       country_id
+城市表     country_id
+1>查询国家表中C开头的country_id
+	select country_id from country where country like 'C%';
+2>查询城市表中country_id为上面查询出来结果的城市名称
+	select city from city where country_id in (select country_id from country where country like 'C%');
+
+查询客户表中名字为MARY的所在城市?
+city address       city_id
+address customer   address_id
+1>查询客户表中名字为MARY的address_id
+	select address_id from customer where first_name='Mary';
+2>查询地址表中address_id为上面查询出来结果的city_id
+	select city_id from address where address_id in (select address_id from customer where first_name='Mary');
+3>查询城市表中city_id为上面查询出来结果的city
+	select city from city where city_id in (select city_id from address where address_id in (select address_id from customer where first_name='Mary'));
+
+查询客户表中名字为MARY的所在国家?
+city address       city_id
+address customer   address_id
+1>查询客户表中名字为MARY的address_id
+	select address_id from customer where first_name='Mary';
+2>查询地址表中address_id为上面查询出来结果的city_id
+	select city_id from address where address_id in (select address_id from customer where first_name='Mary');
+3>查询城市表中city_id为上面查询结果的country_id
+	select country_id from city where city_id in (select city_id from address where address_id in (select address_id from customer where first_name='Mary'));
+4>查询国家表中country_id为上面查询出来结果的国家名字
+	select country from country where country_id in (select country_id from city where city_id in (select city_id from address where address_id in (select address_id from customer where first_name='Mary')));
+
+--练习:3.png
+	select * from dt_pay where salary>(select avg(salary) from dt_pay);
+	select * from dt_pay;
+	truncate table dt_pay;
+--练习:华为.jpg
+	select * from student order by ssex;
+	select * from score where degree between 80 and 100;
+--练习:
+	select * from emp where deptno=30;
+	select ename,empno,deptno from emp;
+	select * from emp where comm>sal;
+	select * from emp where comm>sal*0.6;
+
+2.索引和视图
+	索引:类似于一本书的目录，加快查询速度，降低数据增删改性能
+	语法:
+		create index 索引名字
+		on 表(列);
+	create table aaa as select * from city;
+
+	需求:aaa表中	city_id列增加索引
+		create index i_city_id
+		on aaa(city_id);
+	alter table 表 drop index 索引名字
+	需求:删除索引i_city_id
+		alter table aaa drop index i_city_id;
+	视图，类似于一张表，通常是只读的,当作表使用
+	语法:
+	create view 视图名字
+	as
+	语句
+	需求:创建视图，每个国家有多少个城市
+	create view v_1
+	as
+	select co.country,count(c.city) from city c,country co
+		where c.country_id=co.country_id
+		group by co.country;
+	删除视图
+	drop view 视图名字
+	需求:删除视图v_1
+		drop view v_1
+3.存储过程
+	delimiter //  声明 //代表语句结束
+	语法:create or replace procedure 存储过程名字
+		begin
+			逻辑代码
+		end;
+	调用存储过程
+		call 存储过程名字
