@@ -7,11 +7,11 @@
 
 		select m.math,c.address,c.telno,c.name  from cust c,mark m
 		where c.studentno=m.studentno	
-		and studentno=11
+		and (studentno=11
 		or studentno=22
 		or studentno=33
 		or studentno=44
-		or studentno=55;
+		or studentno=55);
 --4.png
 	1>select  xm,zkzh from tb_student where score>0 and score<5;
 	2>
@@ -63,4 +63,27 @@
 		select city from city where city_id=(select max(city_id) from city);
 		select c.city from city c,(select max(city_id) id  from city) t
 		where c.city_id=t.id;
+	练习--7.jpg
+		1>
+			a.查询c表中满足条件c#
+				select c# from c where cn='税收基础';
+			b.查询sc表中c#为上面查询出来的s#
+				select s# from sc where c# in (select c# from c where cn='税收基础')
+			c.查询s表中s#为上面查询出来的名字和学号
+				select sn,s# from s where s# in (select s# from sc where c# in (select c# from c where cn='税收基础'));
+		2>
+			a.查询sc表中满足条件s#
+				select s# from sc where c#='C2';
+			b.查询s表中s#为上面查询结果的xxx
+				select sn,sd from s  where s# in (select s# from sc where c#='C2');
+		3>
+			select sn,sd from s  where s# in (select s# from sc where c#!='C5');
 
+		4>
+			distinct函数去重
+			select count(distinct(s#)) from sc;
+		5>
+			a.查询sc表中满足条件的s#
+				select s# from sc group by s# having count(*)>5;
+			b.查询s表中s#为上面查询出来结果的xxx
+				select s#，sd from s where s# in (select s# from sc group by s# having count(*)>5)
