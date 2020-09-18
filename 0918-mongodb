@@ -1,0 +1,62 @@
+1.mongodb
+a.mongodb的下载和安装
+	1>下载
+		操作系统类型
+			unix
+			linux
+			windows
+		操作系统位数
+			32位
+			64位
+		软件版本
+	2>配置
+		设置环境变量
+		计算机--属性--高级--环境变量--系统变量--Path中添加mongodb的bin文件夹
+		;F:\BaiduNetdiskDownload\mongodb-win32-x86_64-2012plus-4.2.8\bin
+		确定X3
+b.mongodb的服务
+	mongo     客户端服务
+	mongod    服务端服务
+	1>启动命令(命令提示符 win+r--cmd)
+		创建一个文件夹用于存放mongodb的数据
+		mongod --dbpath d:\data
+		mongod --dbpath d:\data --logpath d:\data\mongo.log
+		--dbpath  数据存放路径
+		--logpath 日志存放位置
+	2>mongodb基础
+		mongodb的端口 27017
+		查看mongodb进程是否正常运行
+			tasklist | find "mongod"
+			tasklist  查看系统中所有进程
+			|         管道，前面的输出作为后面的输入
+			find      搜索
+		查看mongodb端口是否正常运行
+			netstat -an | find "27017"
+			netstat -an 查看系统开放的所有端口
+	3>登录mongodb
+		mongo
+			登录到本地test数据
+		mongo 127.0.0.1/admin
+			登录IP为127.0.0.1的admin数据库
+		mongo 127.0.0.1:27017/admin
+			登录IP为127.0.0.1端口27017的admin数据库
+	4>基础命令
+		mongodb软件分为2部分,数据库软件、数据库数据
+		mysql       mongodb
+		数据库       数据库
+		表           集合
+		数据         文档
+		db
+			查看当前数据库的名字
+		show databases
+		show dbs
+			查看当前有哪些数据库
+		use admin
+			当前数据库切换为admin
+		show tables
+		show collections
+			查看当前数据库有哪些集合
+		db.system.version.find()
+			查看system.version集合中所有文档
+
+
