@@ -58,5 +58,36 @@ b.mongodb的服务
 			查看当前数据库有哪些集合
 		db.system.version.find()
 			查看system.version集合中所有文档
-
-
+c.CURD(增删改查)
+	文档的新增
+		db.xiyouji.insert({name:'8jie',age:18})
+	文档的修改
+		db.xiyouji.update({name:'8jie'},{$set:{age:20}})
+	文档的删除
+		db.xiyouji.remove({name:'5kong'})
+	文档的查询
+		db.xiyouji.find()
+		db.xiyouji.find({age:18})
+d.文档的新增
+	新增普通文档
+		db.xiyouji.insert({name:'shasir',age:18})
+	新增文档指定_id
+		 db.xiyouji.insert({_id:0,name:'tangsir'})
+	新增内嵌文档
+		db.xiyouji.insert({name:'5kong',jingli:{kill:1000,hit:3}})
+	新增多个文档
+		db.xiyouji.insert([{name:'nezha'},{name:'tai2'},{name:'2dog'}])
+e.文档的删除
+	删除所有文档
+		db.xiyouji.remove({})
+	删除指定文档
+		db.xiyouji.remove({age:18})
+f.文档的查询
+	查询集合中所有的文档
+		db.xiyouji.find()
+	查询集合中指定的文档
+		db.xiyouji.find({age:18})
+	查询集合中指定的属性
+		db.xiyouji.find({},{_id:0,name:1})
+	查询集合中指定文档的指定属性
+		db.xiyouji.find({name:'shasir'},{_id:0,age:1})
