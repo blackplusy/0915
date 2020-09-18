@@ -128,3 +128,24 @@ g.查询表达式
 		$regex
 		db.xiyouji.find({name:{$regex:/r$/}})
 		db.xiyouji.find({name:{$regex:/^s/}})
+h.文档的修改
+	https://docs.mongodb.com/manual/reference/operator/update/#id1
+	1>覆盖
+		db.xiyouji.update({name:'bigpeng'},{age:998})
+	2>修改
+		$set
+		db.xiyouji.update({age:300},{$set:{name:'niumo'}})
+	3>自增
+		$inc
+		增加
+		db.xiyouji.update({age:300},{$inc:{age:-10}})
+		减少
+		db.xiyouji.update({age:300},{$inc:{age:10}})
+	4>批量修改
+		db.xiyouji.update({name:'shasir'},{$set:{age:3}},{multi:true})
+	5>删除属性
+		db.xiyouji.update({age:'18'},{$unset:{name:null}})
+	6>重命名
+		db.xiyouji.update({name:'niumo'},{$rename:{'age':'年龄'}})
+
+
