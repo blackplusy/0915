@@ -91,3 +91,40 @@ f.文档的查询
 		db.xiyouji.find({},{_id:0,name:1})
 	查询集合中指定文档的指定属性
 		db.xiyouji.find({name:'shasir'},{_id:0,age:1})
+g.查询表达式
+	https://docs.mongodb.com/manual/reference/operator/query/#query-selectors
+	1>比较
+		$gt 		大于
+		$lt 		小于
+		$gte  		大于等于
+		$lte 		小于等于
+		$ne         不等于
+		db.xiyouji.find({age:{$gte:300}})
+		db.xiyouji.find({name:{$ne:'shasir'}})
+	2>关系
+		$and 	同时满足
+		$or     满足一个即可
+		$not    不满足条件
+		db.xiyouji.find({$or:[{name:'shasir'},{name:'nezha'}]})
+		db.xiyouji.find({$and:[{age:{$lte:1000}},{name:'shasir'}]})
+	3>存在性
+		$exits  属性是否存在
+		db.xiyouji.find({age:{$exists:1}})
+	4>数据类型
+		$type
+		1   数值
+		2   租房有
+		3   对象
+		4   数组
+		5   二进制
+		7   对象id
+		8   布尔
+		9   日期
+		10  空值
+		db.xiyouji.find({age:{$type:1}})
+		db.xiyouji.find({name:{$type:10}})
+		db.xiyouji.find({name:{$not:{$type:10}}})
+	5>正则表达式
+		$regex
+		db.xiyouji.find({name:{$regex:/r$/}})
+		db.xiyouji.find({name:{$regex:/^s/}})
