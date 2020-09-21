@@ -125,9 +125,8 @@
 	f.访问文件使用的参数
 		?id=47
 		?spm=a230r.1.14.46.5493681bwDT3tT&id=599902582038&ns=1&abbucket=19
-
 5.抓包
-	http://ecshop.test1.shopex123.com/
+	http://ecshop.test1.shopex123.com
 	抓取数据包(分析、定位问题)
 	a.常用的抓包工具
 		F12
@@ -159,6 +158,10 @@
 			服务器软件版本
 			时间
 		响应体信息
+	d.fiddler的断点调试
+		bpu http://ecshop.test1.shopex123.com/user.php
+		bpu 取消断点调试
+		bpu http://ecshop.test1.shopex123.com
 
 
 
