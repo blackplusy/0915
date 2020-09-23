@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		.a  {      /*选择class的值是a的标签*/
+				outline-style: none; /*清除标签的outline样式*/
+				width: 350px;        /*宽度设置为350px*/
+		}
+		a {           /*选择a标签*/
+				text-decoration: none;   /*清除超链接的下划线*/
+				color: white;            /*文字颜色白色*/
+		}
+		.b {    /*选择class值是b的标签*/
+				background-color: red;     /*背景颜色红色*/
+				width: 100px;              /*宽度:100px*/
+				height: 30px;              /*高度:30px*/
+				text-align: center;        /*水平居中*/
+				line-height: 30px;         /* 垂直居中*/
+				border-radius: 30px;       /*边框翻转*/
+		}
+	</style>
+</head>
+<body>
+	<table >
+		<tr>
+			<td>手机号</td>
+			<td colspan="3">
+				<input type="text" placeholder="请输入手机号" class="a">
+			</td>
+<!-- 			<td></td>
+			<td></td> -->
+		</tr>
+		<tr>
+			<td>登录密码</td>
+			<td colspan="3">
+				<input type="password" class="a">
+			</td>
+	<!-- 		<td></td>
+			<td></td> -->
+		</tr>
+		<tr>
+			<td>确认密码</td>
+			<td colspan="3">
+				<input type="password" class="a">
+			</td>
+	<!-- 		<td></td>
+			<td></td> -->
+		</tr>
+		<tr>
+			<td>验证码</td>
+			<td>
+				<input type="text" placeholder="请输入验证码">
+			</td>
+			<td>
+				<img src="../3.jpg" width="100px" height="20px">
+			</td>
+			<td>换张图</td>
+		</tr>
+	</table>
+	<div align="center" class="b">
+		<a href="#">立即注册</a>
+	</div>
+</body>
+</html>
