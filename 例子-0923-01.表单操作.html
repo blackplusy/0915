@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<!-- form 表单 -->
+	<!-- action 数据提交到到哪里 -->
+	<!-- method 表单提交的方式 -->
+		<!-- get -->
+			<!-- 1.数据显示在URL上 -->
+			<!-- 2.安全性相对较低 -->
+			<!-- 3.速度快 -->
+			<!-- 4.数据长度有限制 -->
+		<!-- post -->
+			<!-- 1.请求数据显示在请求体中 -->
+			<!-- 2.安全性相对较高 -->
+			<!-- 3.相对于get速度慢 -->
+			<!-- 4.数据长度理论上有限制 -->
+	<!-- form表单是前端的最后一站，后端的第一站 -->
+	<!-- input控件 -->
+		<!-- type 表单控件类型 -->
+		<!-- name 控件名字 -->
+		<!-- value 控件的值 -->
+		<!-- id js调用 -->
+	<form action="test.php" method="get">
+		<div>
+			<!-- 文本框/明文框 -->
+			用户名:<input type="text" name="input">
+		</div>
+		<div>
+			<!-- 密码框 -->
+			密码:<input type="password" name="passwords">
+		</div>
+		<div>
+			<!-- 单选框 -->
+			<!-- 单选框通过name把多个同名单选框变成一个组 -->
+			性别:
+			男 <input type="radio" name="sex" value="male">
+			女 <input type="radio" name="sex" value="female">
+			泰国 <input type="radio" name="sex" value="sawadika">
+		</div>
+		<div>
+			<!-- 复选框 -->
+			<!-- 复选框通过name把多个同名复选框变成一个组 -->
+			我的爱好:
+			妹子  <input type="checkbox" name="hobby" value="0">
+			唱    <input type="checkbox" name="hobby" value="1">
+			rap  <input type="checkbox" name="hobby" value="2">
+		</div>
+		<div>
+			<!-- 下拉框 -->
+			籍贯：
+			<select>
+				<option>福建</option>
+				<option>广东</option>
+				<option selected="selected">黑龙江</option>
+			</select>
+		</div>
+		<div>
+			<!-- 普通按钮 -->
+			<input type="button" name="button" value="我是个可怜无助又能吃的胖子">
+			<!-- 提交按钮 -->
+			<input type="submit" name="submit" value="memeda">
+			<!-- 重置按钮 -->
+			<input type="reset" name="reset">
+			<!-- 图片按钮 -->
+			<input type="image" src="../0922/1.jpg" width="300px" height="300px">
+		</div>
+		<!-- 文本域 -->
+		<!-- cols代表每行多少个字，row代表多少行 -->
+		<textarea cols="10" rows="100">
+			
+		</textarea>
+	</form>
+</body>
+</html>
