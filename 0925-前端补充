@@ -1,0 +1,31 @@
+1.css定位
+	a.单一属性定位
+		a1.标签选择器
+			$('input')
+			$("a")
+		a2.id选择器
+			$("#kw")
+		a3.class定位
+			$(".mnav")
+		a4.其他属性定位
+			$("[name='wd']")
+			$('[name="wd"]')
+			$("[autocomplete='off']")
+	b.组合属性定位
+		b1.id组合属性定位
+			$('input#kw')   id名是kw的input标签
+		b2.class组合属性定位
+			$("input.s_ipt") 类名是s_ipt的input标签
+		b3.其他属性组合
+			$('input[name="wd"]') name属性值是wd的input标签
+		b4.只有属性名，没有值也可以
+			$("input[autocomplete]")
+			$("a[name]")
+		b5.两个其他属性组合
+			$("[name='wd'][autocomplete='off']")
+		b6.模糊匹配属性定位
+			匹配属性值为字符串开头
+			$('input[name^="w"]')
+			$("[class^='m']")
+			匹配属性值为字符串结尾的
+			$("[class$='t']")
