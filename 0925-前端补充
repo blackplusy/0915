@@ -29,3 +29,42 @@
 			$("[class^='m']")
 			匹配属性值为字符串结尾的
 			$("[class$='t']")
+	c.练习
+		$("[href='http://map.baidu.com']")
+		$("[href='//home.baidu.com']")
+		$("#kw")
+		$("#su")
+		$(".s-bottom-recordcode")
+		$("[src='https://dss0.bdstatic.com/5aV1bjqh_Q23odCf/static/mancard/img/side/qrcode-hover@2x-f9b106a848.png']")
+2.xpath定位
+	针对xml的路径语言，通过元素的路径来找到这个元素
+	https://www.w3cschool.cn/xpath/xpath-syntax.html
+	1.工具
+		F12
+		FireBug
+	2.用法
+		/   	绝对路径，从根节点选取元素
+		//  	相对路径，所有子节点中搜索对应元素
+		@       选取属性
+		.       当前节点
+		..      当前节点的父节点
+		浏览器的F12的console中可以通过$x()进行调试
+		1>通过id定位
+			$x("//*[@id='kw']")
+			$x("//input[@id='kw']")
+		2>通过class定位
+			$x("//*[@class='s_ipt nobg_s_fm_hover']")
+		3>通过name定位
+			$x("//*[@name='wd']") 
+		4>其他属性定位
+			$x("//*[@autocomplete='off']")
+		5>通过层级关系进行定位元素
+			相对路径
+			$x("//a[@class='mnav c-font-normal c-color-t']")
+			$x("//a[@class='mnav c-font-normal c-color-t'][3]")
+			绝对路径
+			$x("/html/body/div[1]/div[1]") 
+		6>xpath运算符
+			and  同时满足条件
+			or   满足一个条件即可
+			$x('//a[@class="mnav c-font-normal c-color-t"and @href="http://news.baidu.com"]')
